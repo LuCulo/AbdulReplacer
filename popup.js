@@ -19,8 +19,6 @@ function onWindowLoad() {
       message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
     }
   });
-  var newWindow = window.open();
-  newWindow.document.write();
 }
 
 window.onload = onWindowLoad;

@@ -7,6 +7,14 @@ function DOMtoString(document_root) {
     while (node) {
         switch (node.nodeType) {
         case Node.ELEMENT_NODE:	//showed up for <head tag>
+			var badindex = node.outerHTML.indexOf("Injecting",0);	//search for text within the string
+			if(badindex != -1){		//if found a word that isn't good, start excluding bad HTML
+				var startingdiv = node.outerHTML.indexOf("<div",badindex - 40);	//find the opening <div bracket for the bad HTML 
+				var endingdiv = node.outerHTML.indexOf("</div>",badindex); 	//find the closing </div bracket for the bad HTML>
+				html += "Starting Div:" + startingdiv.toString();
+				html += "Ending Div:" + endingdiv.toString();
+				}
+			html += "Bad Index:" + badindex.toString();
             html += node.outerHTML;	//this contains the <div> tag I'm looking for
             break;
         case Node.TEXT_NODE:
@@ -25,8 +33,8 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
-	var newWindow = window.open();	//open new tab for modified html
-    newWindow.document.write(html);	//test: write html to new tab
+//	var newWindow = window.open();	//open new tab for modified html
+//    newWindow.document.write(html);	//test: write html to new tab
     return html;
 }
 
