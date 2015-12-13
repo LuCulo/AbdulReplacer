@@ -17,13 +17,22 @@ function DOMtoString(document_root) {
 //			html += "Bad Index:" + badindex.toString();
 			
 			var str = node.outerHTML;	//start put HTML into fake file
+			var checkstream = ["Injecting","Script"];	//words to be replaced
+			var checklength = 2;	//length of checkstream
+			var checkcounter = 0;	//increments through checkstream
 			
 			var badindex = 0;
-			badindex = str.indexOf("Injecting",0);	//search for text within the string
-//			while(badindex != -1){
-				str = str.replace("Injecting", "break");		
-				badindex = str.indexOf("Injecting",0);	//search for text within the string				
-//			}
+			
+			while(checkcounter < checklength){
+				
+				badindex = str.indexOf(checkstream[checkcounter],0);	//search for text within the string
+				while(badindex > 0){		//go through all instances
+					str = str.replace(checkstream[checkcounter], "break");				
+					badindex = str.indexOf(checkstream[checkcounter],0);	//search for text within the string				
+				}				
+			checkcounter += 1;	
+			}
+
             html += str;	//breaks any image file references with the word injecting
             break;
         case Node.TEXT_NODE:
@@ -42,8 +51,8 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
-//	var newWindow = window.open();	//open new tab for modified html
-//    newWindow.document.write(html);	//test: write html to new tab
+	var newWindow = window.open();	//open new tab for modified html
+    newWindow.document.write(html);	//test: write html to new tab
     return html;
 }
 
