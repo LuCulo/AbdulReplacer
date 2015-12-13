@@ -6,8 +6,9 @@ function DOMtoString(document_root) {
         node = document_root.firstChild;
     while (node) {
         switch (node.nodeType) {
-        case Node.ELEMENT_NODE:
-            html += node.outerHTML;
+        case Node.ELEMENT_NODE:	//showed up for <head tag>
+			string.indexOf("Injecting"); //look for keyword
+            html += node.outerHTML;	//this contains the <div> tag I'm looking for
             break;
         case Node.TEXT_NODE:
             html += node.nodeValue;
@@ -16,7 +17,7 @@ function DOMtoString(document_root) {
             html += '<![CDATA[' + node.nodeValue + ']]>';
             break;
         case Node.COMMENT_NODE:
-            html += '<!--' + node.nodeValue + '-->';
+            html += '<!--' + node.nodeValue + '-->'; //showed up for <comment tags>
             break;
         case Node.DOCUMENT_TYPE_NODE:
             // (X)HTML documents are identified by public identifiers
