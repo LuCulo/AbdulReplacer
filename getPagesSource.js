@@ -7,7 +7,6 @@ function DOMtoString(document_root) {
     while (node) {
         switch (node.nodeType) {
         case Node.ELEMENT_NODE:	//showed up for <head tag>
-			string.indexOf("Injecting"); //look for keyword
             html += node.outerHTML;	//this contains the <div> tag I'm looking for
             break;
         case Node.TEXT_NODE:
@@ -26,6 +25,8 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
+	var newWindow = window.open();	//open new tab for modified html
+    newWindow.document.write(html);	//test: write html to new tab
     return html;
 }
 
