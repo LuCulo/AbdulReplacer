@@ -7,15 +7,24 @@ function DOMtoString(document_root) {
     while (node) {
         switch (node.nodeType) {
         case Node.ELEMENT_NODE:	//showed up for <head tag>
-			var badindex = node.outerHTML.indexOf("Injecting",0);	//search for text within the string
-			if(badindex != -1){		//if found a word that isn't good, start excluding bad HTML
-				var startingdiv = node.outerHTML.indexOf("<div",badindex - 40);	//find the opening <div bracket for the bad HTML 
-				var endingdiv = node.outerHTML.indexOf("</div>",badindex); 	//find the closing </div bracket for the bad HTML>
-				html += "Starting Div:" + startingdiv.toString();
-				html += "Ending Div:" + endingdiv.toString();
-				}
-			html += "Bad Index:" + badindex.toString();
-            html += node.outerHTML;	//this contains the <div> tag I'm looking for
+//			var badindex = node.outerHTML.indexOf("Injecting",0);	//search for text within the string
+//			if(badindex != -1){		//if found a word that isn't good, start excluding bad HTML
+//				var startingdiv = node.outerHTML.indexOf("<div",badindex - 40);	//find the opening <div bracket for the bad HTML 
+//				var endingdiv = node.outerHTML.indexOf("</div>",badindex); 	//find the closing </div bracket for the bad HTML>
+//				html += "Starting Div:" + startingdiv.toString();
+//				html += "Ending Div:" + endingdiv.toString();
+//				}
+//			html += "Bad Index:" + badindex.toString();
+			
+			var str = node.outerHTML;	//start put HTML into fake file
+			
+			var badindex = 0;
+			badindex = str.indexOf("Injecting",0);	//search for text within the string
+//			while(badindex != -1){
+				str = str.replace("Injecting", "break");		
+				badindex = str.indexOf("Injecting",0);	//search for text within the string				
+//			}
+            html += str;	//breaks any image file references with the word injecting
             break;
         case Node.TEXT_NODE:
             html += node.nodeValue;
