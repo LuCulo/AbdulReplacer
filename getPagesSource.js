@@ -7,18 +7,10 @@ function DOMtoString(document_root) {
     while (node) {
         switch (node.nodeType) {
         case Node.ELEMENT_NODE:	//showed up for <head tag>
-//			var badindex = node.outerHTML.indexOf("Injecting",0);	//search for text within the string
-//			if(badindex != -1){		//if found a word that isn't good, start excluding bad HTML
-//				var startingdiv = node.outerHTML.indexOf("<div",badindex - 40);	//find the opening <div bracket for the bad HTML 
-//				var endingdiv = node.outerHTML.indexOf("</div>",badindex); 	//find the closing </div bracket for the bad HTML>
-//				html += "Starting Div:" + startingdiv.toString();
-//				html += "Ending Div:" + endingdiv.toString();
-//				}
-//			html += "Bad Index:" + badindex.toString();
 			
 			var str = node.outerHTML;	//start put HTML into fake file
-			var checkstream = ["Injecting","Script"];	//words to be replaced
-			var checklength = 2;	//length of checkstream
+			var checkstream = ["cat","cats","Cat","Cats","paw","Paw","paws"];	//words to be replaced
+			var checklength = checkstream.length;	//length of checkstream
 			var checkcounter = 0;	//increments through checkstream
 			
 			var badindex = 0;
