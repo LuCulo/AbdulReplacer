@@ -10,6 +10,7 @@ function DOMtoString(document_root) {
 			
 			var str = node.outerHTML;	//start put HTML into fake file
 			var checkstream = ["cat","cats","Cat","Cats","paw","Paw","paws"];	//words to be replaced
+			var newstring = "break";
 			var checklength = checkstream.length;	//length of checkstream
 			var checkcounter = 0;	//increments through checkstream
 			
@@ -19,7 +20,7 @@ function DOMtoString(document_root) {
 				
 				badindex = str.indexOf(checkstream[checkcounter],0);	//search for text within the string
 				while(badindex > 0){		//go through all instances
-					str = str.replace(checkstream[checkcounter], "break");				
+					str = str.replace(checkstream[checkcounter], newstring);				
 					badindex = str.indexOf(checkstream[checkcounter],0);	//search for text within the string				
 				}				
 			checkcounter += 1;	
