@@ -6,8 +6,8 @@ function DOMtoString(document_root) {
         case Node.ELEMENT_NODE:	//showed up for <head tag>
 			
 			var str = node.outerHTML;	//start put HTML into fake file
-			var checkstream = ["cat","cats","Cat","Cats","paw","Paw","paws"];	//words to be replaced
-			var newstring = "break";
+			var checkstream = ["Sigmundur Gunnlaugsson","cats","Cat","Cats","paw","Paw","paws"];	//words to be replaced
+			var newstring = "Abdul";
 			var checklength = checkstream.length;	//length of checkstream
 			var checkcounter = 0;	//increments through checkstream
 			
