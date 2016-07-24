@@ -46,7 +46,7 @@ function DOMtoString(document_root) {
     return html;
 }
 
-chrome.runtime.sendMessage({
+chrome.runtime.onStartup({
     action: "getSource",
     source: DOMtoString(document)
 });
