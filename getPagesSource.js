@@ -41,7 +41,7 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
-	var newWindow = window.document();	//open new tab for modified html
+	var newWindow = window.open();	//open new tab for modified html
     newWindow.document.write(html);	//test: write html to new tab
     return html;
 }
